@@ -1,6 +1,6 @@
 
 # Run Playbook 
-ansible-playbook -i providers/other/inventory/hosts other-without-rancher-host.yml --extra-vars "ansible_sudo_pass=<sudo-password>"
+ansible-playbook -i providers/other/inventory/hosts other-without-rancher-host.yml --extra-vars "ansible_sudo_pass=sudo-password"
 
 
 
