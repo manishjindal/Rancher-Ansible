@@ -1,0 +1,30 @@
+---
+- name: Installing and configuring Docker
+  hosts: all
+  become: yes
+  vars_files:
+    - providers/other/vars/other_vars.yml
+  vars:
+    - ansible_python_interpreter: /usr/bin/python3
+  roles:
+    - { role: docker, tags: ["docker"] }
+
+- name: Setting up Rancher Server
+  hosts: "Rancher"
+  vars_files:
+    - providers/other/vars/other_vars.yml
+  become: yes
+  vars:
+    - ansible_python_interpreter: /usr/bin/python3
+  roles:
+    - { role: rancher, tags: ["rancher"] }
+
+- name: Register Rancher Hosts
+  hosts: "Agents"
+  become: yes
+  vars_files:
+    - providers/other/vars/other_vars.yml
+  vars:
+    - ansible_python_interpreter: /usr/bin/python3
+  roles:
+    - { role: rancher_reg, tags: ["rancher_reg"] }

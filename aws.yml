@@ -1,0 +1,60 @@
+---
+- name: Creating AWS Rancher stack
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars_files:
+    - providers/aws/vars/aws_vars.yml
+  tasks:
+    - name: Launch cloudformation template
+      cloudformation:
+        stack_name: "{{ aws_stack_name }}"
+        state: "present"
+        region: "{{ aws_region }}"
+        disable_rollback: false
+        template: "providers/aws/template.yaml"
+        template_parameters:
+          RancherPort: "{{ rancher_port | int }}"
+          RancherServerAZ: "{{ aws_az }}"
+          RancherAMI: "{{ aws_rancher_ami }}"
+          RancherInstanceType: "{{ aws_rancher_instance_type }}"
+          VpcId: "{{ aws_vpc_id }}"
+          KeyPair: "{{ aws_key_pair }}"
+          AgentCount: "{{ aws_agent_count }}"
+          MaxAgentCount: "{{ aws_max_agent_count }}"
+          AgentAMI: "{{ aws_agent_ami }}"
+          AgentInstanceType: "{{ aws_agent_instance_type }}"
+          SubnetID: "{{ aws_subnet_id }}"
+        tags:
+          Stack: "{{ aws_stack_name }}"
+
+    - name: Wait for 5 minutes
+      pause:
+        minutes: 5
+
+    - name: Refresh Inventory
+      meta: refresh_inventory
+
+- name: Setting up Rancher Server
+  hosts: tag_InventoryName_{{ aws_stack_name | replace("-", "_")}}_rancher_server
+  user: "{{ rancher_server_user }}"
+  vars:
+    - ansible_python_interpreter: /usr/bin/python3
+  vars_files:
+    - providers/aws/vars/aws_vars.yml
+  become: yes
+  roles:
+    - { role: docker, tags: ["docker"] }
+    - { role: rancher, tags: ["rancher"] }
+
+- name: Register Rancher Hosts
+  hosts: tag_InventoryName_{{ aws_stack_name | replace("-", "_")}}_rancher_agent
+  user: "{{ rancher_agents_user }}"
+  vars:
+    - ansible_python_interpreter: /usr/bin/python3
+  vars_files:
+    - providers/aws/vars/aws_vars.yml
+  become: yes
+  roles:
+    - { role: docker, tags: ["docker"] }
+    - { role: rancher_reg, tags: ["rancher_reg"] }
