@@ -1,3 +1,9 @@
+
+# Run Playbook 
+ansible-playbook -i providers/other/inventory/hosts other-without-rancher-host.yml --extra-vars "ansible_sudo_pass=<sudo-password>"
+
+
+
 # Rancher-Ansible
 
 This playbook will install Rancher platform (latest version) and register hosts automatically with Rancher, this playbook can be used to automatically create hosts on AWS using cloudformation or to install Rancher and register hosts on already created hosts using static inventory file.
