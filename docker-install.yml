@@ -1,0 +1,9 @@
+---
+- name: Installing and configuring Docker
+  hosts: all
+  become: yes
+  vars_files:
+    - providers/other/vars/other_vars.yml
+  roles:
+    - { role: docker, tags: ["docker"] }
+

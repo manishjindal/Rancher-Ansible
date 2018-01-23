@@ -1,2 +1,5 @@
-[Rancher]
-host2 ansible_ssh_port=22 ansible_ssh_host=192.168.56.102
+[Rancher-master]
+master ansible_ssh_port=22 ansible_ssh_host=139.59.5.95
+
+[Rancher-host]
+
