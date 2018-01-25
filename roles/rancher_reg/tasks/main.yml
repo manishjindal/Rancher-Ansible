@@ -29,7 +29,7 @@
   register: containers
 
 - name: Register the Host machine with the Rancher server
-  docker_container:
+  docker:
       name: "{{ rancher_agent_name }}"
       image: "{{ rancher_token.json['image'] }}"
       privileged: yes
