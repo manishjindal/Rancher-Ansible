@@ -2,5 +2,5 @@
 
 rancher_name: rancher_server
 rancher_server: 139.59.93.248
-rancher_version: v2.0.0-alpha10
+rancher_version: v1.6.14
 rancher_port: 8080
