@@ -1,0 +1,9 @@
+{
+  "name": "Kubernetes-test",
+  "projectTemplateId": "1pt2",
+  "allowSystemRole": false,
+  "members": [ ],
+  "virtualMachine": false,
+  "servicesPortRange": null,
+  "projectLinks": [ ]
+}
