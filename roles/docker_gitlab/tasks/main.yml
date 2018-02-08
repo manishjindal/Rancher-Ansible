@@ -27,9 +27,8 @@
     image: '{{ docker_gitlab_image }}'
     # restart: True
     hostname: '{{ docker_gitlab_hostname }}'
-    env: RANCHER_NETWORK=true,
-       '{{ docker_gitlab_env }}'
-    published_ports: '{{ docker_gitlab_ports }}'
+    env: '{{ docker_gitlab_env }}'
+    ports: '{{ docker_gitlab_ports }}'
     volumes: '{{ docker_gitlab_volumes }}'
   # notify: Restart Docker GitLab
   tags:

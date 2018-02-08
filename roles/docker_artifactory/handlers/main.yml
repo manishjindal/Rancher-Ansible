@@ -1,11 +1,11 @@
 ---
 - name: Restart Docker Artifactory
-  docker_container:
+  docker:
     name: '{{ docker_artifactory_name }}'
     image: '{{ docker_artifactory_image }}'
     hostname: '{{ docker_artifactory_hostname }}'
     env: '{{ docker_artifactory_env }}'
-    published_ports: '{{ docker_artifactory_ports }}'
+    ports: '{{ docker_artifactory_ports }}'
     volumes: '{{ docker_artifactory_volumes }}'
     state: started
-    restart: True
+    #restart: True
