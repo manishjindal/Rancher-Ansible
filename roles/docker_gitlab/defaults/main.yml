@@ -1,0 +1,49 @@
+---
+docker_gitlab_name: 'gitlab'
+docker_gitlab_image: 'gitlab/gitlab-ee:latest'
+docker_gitlab_hostname: 'localhost'
+docker_gitlab_env:
+  GITLAB_OMNIBUS_CONFIG: |
+    external_url '{{ docker_gitlab_gitlab_external_url }}'
+docker_gitlab_data_directories:
+  - '/project/docker/gitlab/config'
+docker_gitlab_volumes:
+  - '/project/docker/gitlab/config:/etc/gitlab'
+  - '/project/docker/gitlab/logs:/var/log/gitlab'
+  - '/project/docker/gitlab/data:/var/opt/gitlab'
+docker_gitlab_ports:
+  - '80:80'
+  - '2222:22' # TODO: This conflicts with default vagrant SSH port
+
+docker_gitlab_gitlab_external_url: 'http://{{ docker_gitlab_hostname }}'
+docker_gitlab_gitlab_ssh_host: '{{ docker_gitlab_hostname }}'
+docker_gitlab_gitlab_shell_ssh_port: '2222'
+docker_gitlab_gitlab_email_enabled: 'true'
+docker_gitlab_gitlab_email_from: 'example@example.com'
+docker_gitlab_gitlab_email_display_name: 'Example'
+docker_gitlab_gitlab_email_reply_to: 'noreply@example.com'
+docker_gitlab_gitlab_email_subject_suffix: ''
+
+docker_gitlab_gitlab_smtp_enable: 'false'
+docker_gitlab_gitlab_smtp_address: 'smtp.server'
+docker_gitlab_gitlab_smtp_port: '465'
+docker_gitlab_gitlab_smtp_user_name: 'smtp user'
+docker_gitlab_gitlab_smtp_password: 'smtp password'
+docker_gitlab_gitlab_smtp_domain: 'example.com'
+docker_gitlab_gitlab_smtp_authentication: 'login'
+docker_gitlab_gitlab_smtp_enable_starttls_auto: 'true'
+docker_gitlab_gitlab_smtp_tls: 'false'
+
+docker_gitlab_ldap_enabled: 'false'
+docker_gitlab_ldap_host: "example.com"
+docker_gitlab_ldap_port: "389"
+docker_gitlab_ldap_uid: "sAMAccountName"
+docker_gitlab_ldap_method: "plain"
+docker_gitlab_ldap_bind_dn: "CN=Username,CN=Users,DC=example,DC=com"
+docker_gitlab_ldap_password: "password"
+docker_gitlab_ldap_base: "DC=example,DC=com"
+# TODO:
+#  docker_gitlab_ldap_group_base: ''
+#  docker_gitlab_ldap_admin_group: ''
+#
+docker_gitlab_nginx_client_max_body_size: '250m'

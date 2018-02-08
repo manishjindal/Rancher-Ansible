@@ -15,27 +15,27 @@
   roles:
     - { role: rancher, tags: ["rancher"] }
 
-#- name: Register Rancher Hosts
-#  hosts: Rancher-host
+- name: Register Rancher Hosts
+  hosts: Rancher-host
+  become: yes
+  vars_files:
+    - providers/other/vars/rancher-1.6.yml
+  roles:
+    - { role: rancher_reg, tags: ["rancher_reg"] }
+
+#- name: Create Kubernetes Cluster
+#  hosts: Rancher-master
 #  become: yes
 #  vars_files:
 #    - providers/other/vars/rancher-1.6.yml
 #  roles:
-#    - { role: rancher_reg, tags: ["rancher_reg"] }
+#    - { role: kubernetes-init, tags: ["kubernetes-init"] }
 
-- name: Create Kubernetes Cluster
-  hosts: Rancher-master
-  become: yes
-  vars_files:
-    - providers/other/vars/rancher-1.6.yml
-  roles:
-    - { role: kubernetes-init, tags: ["kubernetes-init"] }
-
-- name: Register Kubernetes Hosts
-  hosts: Kubernetes-host
-  become: yes
-  vars_files:
-    - providers/other/vars/rancher-1.6.yml
-  roles:
-    - { role: kubernetes_reg, tags: ["rancher_reg"] }
+#- name: Register Kubernetes Hosts
+#  hosts: Kubernetes-host
+#  become: yes
+#  vars_files:
+#    - providers/other/vars/rancher-1.6.yml
+#  roles:
+#    - { role: kubernetes_reg, tags: ["rancher_reg"] }
 

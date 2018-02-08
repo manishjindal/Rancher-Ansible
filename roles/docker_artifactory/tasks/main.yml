@@ -1,0 +1,26 @@
+---
+- name: Create Artifactory data directories
+  file:
+    state: directory
+    path: '{{ item }}'
+    owner: root
+    group: root
+    mode: 0777
+  with_items: '{{ docker_artifactory_data_directories }}'
+  tags:
+    - docker_artifactory
+
+- name: Create Artifactory in Docker Container
+  docker_container:
+    name: '{{ docker_artifactory_name }}'
+    image: '{{ docker_artifactory_image }}'
+    hostname: '{{ docker_artifactory_hostname }}'
+    env: '{{ docker_artifactory_env }}'
+    published_ports: '{{ docker_artifactory_ports }}'
+    volumes: '{{ docker_artifactory_volumes }}'
+    #ulimits:
+    #  - 'nproc:65535'
+    #  - 'nofile:32000:40000'
+  notify: Restart Docker Artifactory
+  tags:
+    - docker_artifactory

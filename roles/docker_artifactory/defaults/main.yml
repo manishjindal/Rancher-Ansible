@@ -1,0 +1,17 @@
+---
+docker_artifactory_name: 'artifactory'
+docker_artifactory_image: 'docker.bintray.io/jfrog/artifactory-pro:latest'
+docker_artifactory_hostname: 'localhost'
+docker_artifactory_data_directories:
+  - '/project/docker/artifactory'
+docker_artifactory_volumes:
+  - '/project/docker/artifactory:/var/opt/jfrog/artifactory'
+docker_artifactory_ports: '8081:8081'
+docker_artifactory_env:
+  DB_TYPE: 'postgresql'
+  DB_HOST: 'localhost'
+  DB_PORT: '5432'
+  DB_USER: 'postgres'
+  DB_PASSWORD: 'mysecretpassword'
+  #Add extra Java options by uncommenting the following line
+  #- EXTRA_JAVA_OPTIONS=Xmx4g

@@ -1,6 +1,6 @@
 ---
 
 rancher_name: rancher_server
-rancher_server: 139.59.95.103
+rancher_server: 188.166.50.73
 rancher_version: v1.6.14
 rancher_port: 8080

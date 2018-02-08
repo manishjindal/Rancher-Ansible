@@ -1,0 +1,36 @@
+---
+- name: Create Gitlab data directories
+  file:
+    state: directory
+    path: '{{ item }}'
+    owner: root
+    group: root
+    mode: 0777
+  with_items: '{{ docker_gitlab_data_directories }}'
+  tags:
+    - docker_gitlab
+
+- name: Configure Gitlab
+  template:
+    src: gitlab.rb.j2
+    dest: /project/docker/gitlab/config/gitlab.rb
+    owner: root
+    group: root
+    mode: 0600
+  notify: Restart Docker GitLab
+  tags:
+    - docker_gitlab
+
+- name: Create a Gitlab container
+  docker:
+    name: '{{ docker_gitlab_name }}'
+    image: '{{ docker_gitlab_image }}'
+    # restart: True
+    hostname: '{{ docker_gitlab_hostname }}'
+    env: RANCHER_NETWORK=true,
+       '{{ docker_gitlab_env }}'
+    published_ports: '{{ docker_gitlab_ports }}'
+    volumes: '{{ docker_gitlab_volumes }}'
+  # notify: Restart Docker GitLab
+  tags:
+    - docker_gitlab

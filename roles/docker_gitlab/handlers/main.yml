@@ -1,0 +1,11 @@
+---
+- name: Restart Docker GitLab
+  docker_container:
+    name: '{{ docker_gitlab_name }}'
+    image: '{{ docker_gitlab_image }}'
+    state: started
+    restart: True
+    hostname: '{{ docker_gitlab_hostname }}'
+    env: '{{ docker_gitlab_env }}'
+    published_ports: '{{ docker_gitlab_ports }}'
+    volumes: '{{ docker_gitlab_volumes }}'

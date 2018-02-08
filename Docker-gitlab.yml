@@ -1,0 +1,6 @@
+---
+- name: Ansible HostType docker_gitlab Play
+  hosts: Rancher-master
+  become: yes
+  roles:
+    - docker_gitlab

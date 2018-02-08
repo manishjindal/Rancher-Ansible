@@ -1,0 +1,6 @@
+---
+- name: Ansible HostType docker_artifactory Play
+  hosts: "{{ env }}:&docker_artifactory"
+  become: True
+  roles:
+    - docker_artifactory
