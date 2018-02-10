@@ -1,6 +1,6 @@
 ---
 - name: Ansible HostType docker_postgres Play
-  hosts: "{{ env }}:&docker_postgres"
+  hosts: Rancher-host
   become: True
   roles:
     - docker_postgres

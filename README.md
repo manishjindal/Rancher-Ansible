@@ -2,6 +2,9 @@
 # Run Playbook 
 ansible-playbook -i providers/other/inventory/hosts other-without-rancher-host.yml --extra-vars "ansible_sudo_pass=sudo-password"
 
+docker run -d -p 8091:80 seqvence/static-site:latest
+
+docker run -d -p 8092:8080 jenkins:latest
 
 
 # Rancher-Ansible

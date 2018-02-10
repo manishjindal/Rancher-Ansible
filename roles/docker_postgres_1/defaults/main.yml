@@ -3,8 +3,8 @@ docker_postgres_name: 'postgres'
 docker_postgres_image: 'postgres:latest'
 docker_postgres_hostname: 'localhost'
 docker_postgres_env:
-  POSTGRES_USER=artifactory
-  POSTGRES_PASSWORD=artifactory
+  POSTGRES_USER=test
+  POSTGRES_PASSWORD=testagain
 docker_postgres_volumes:
   - '/project/docker/postgres:/var/lib/postgresql/data'
 docker_postgres_data_directories:

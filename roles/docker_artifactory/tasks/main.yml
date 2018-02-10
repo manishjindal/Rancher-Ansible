@@ -1,14 +1,14 @@
 ---
 - name: Create Artifactory data directories
-  file: path=/project/docker/artifactory state=directory
-#    state: directory
-#    path: '{{ item }}'
-#    owner: root
-#    group: root
-#    mode: 0777
-#  with_items: '{{ docker_artifactory_data_directories }}'
-#  tags:
-#    - docker_artifactory
+  file: 
+    state: directory
+    path: '{{ item }}'
+    owner: root
+    group: root
+    mode: 0777
+  with_items: '{{ docker_artifactory_data_directories }}'
+  tags:
+    - docker_artifactory
 
 - name: Create Artifactory in Docker Container
   docker:
