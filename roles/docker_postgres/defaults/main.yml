@@ -1,0 +1,13 @@
+---
+docker_postgres_name: 'postgres'
+docker_postgres_image: 'postgres:latest'
+docker_postgres_hostname: 'localhost'
+docker_postgres_env:
+  POSTGRES_USER: 'postgres'
+  POSTGRES_PASSWORD: 'root'
+docker_postgres_volumes:
+  - '/project/docker/postgres:/var/lib/postgresql/data'
+docker_postgres_data_directories:
+  - '/project/docker/postgres'
+docker_postgres_ports:
+  - '5432:5432'

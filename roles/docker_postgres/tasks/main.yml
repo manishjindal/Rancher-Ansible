@@ -1,0 +1,23 @@
+---
+- name: Create Postgres data directories
+  file:
+    state: directory
+    path: '{{ item }}'
+    owner: root
+    group: root
+    mode: 0777
+  with_items: '{{ docker_postgres_data_directories }}'
+  tags:
+    - docker_postgres
+
+- name: Create a Postgres container
+  docker_container:
+    name: '{{ docker_postgres_name }}'
+    image: '{{ docker_postgres_image }}'
+    hostname: '{{ docker_postgres_hostname }}'
+    env: '{{ docker_postgres_env }}'
+    published_ports: '{{ docker_postgres_ports }}'
+    volumes: '{{ docker_postgres_volumes }}'
+  notify: Restart Docker Postgres
+  tags:
+    - docker_postgres

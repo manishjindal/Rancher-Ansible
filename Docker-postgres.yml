@@ -1,0 +1,6 @@
+---
+- name: Ansible HostType docker_postgres Play
+  hosts: "{{ env }}:&docker_postgres"
+  become: True
+  roles:
+    - docker_postgres
