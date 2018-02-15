@@ -1,0 +1,29 @@
+postgres:
+  image: postgres:latest
+  container_name: postgres
+  environment:
+   - POSTGRES_USER: artifactory
+   - POSTGRES_PASSWORD: artifactory
+  ports:
+   - "5432:5432"
+  volume:
+   - "/project/docker/postgres:/var/lib/postgresql/data"
+  restart: always
+
+web:
+  image: docker.bintray.io/jfrog/artifactory-pro:latest
+  environment:
+   - DB_TYPE: 'postgresql'
+   - DB_HOST: 'localhost'
+   - DB_PORT: '5432'
+   - DB_USER: 'artifactory'
+   - DB_PASSWORD: 'artifactory'
+  depends_on:
+     - postgres
+  ports:
+   - "8081:8081"
+  volume:
+   - "/test/docker/artifactory:/var/opt/jfrog/artifactory" 
+  links:
+   - postgres:postgres
+  restart: always
