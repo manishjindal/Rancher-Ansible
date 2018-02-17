@@ -1,0 +1,8 @@
+---
+- name: create stack
+  - rancher_compose:
+      docker_compose: "{{playbook_dir}}/docker-compose.yml"
+      url: http://188.166.50.73:8080
+      access_key: B74C6ABF27515D372720
+      secret_key: xcj8UYFYz1JuKNyTUYK4iUxX7mWog2H1V1dEQ23v
+      state: present

@@ -9,7 +9,7 @@ docker_artifactory_volumes:
 docker_artifactory_ports: '8081:8081'
 docker_artifactory_env:
   DB_TYPE: 'postgresql'
-  DB_HOST: '174.138.6.24'
+  DB_HOST: '165.227.9.29'
   DB_PORT: '5432'
   DB_USER: 'artifactory'
   DB_PASSWORD: 'artifactory'
