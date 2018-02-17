@@ -1,0 +1,54 @@
+
+- name: Run with inline v2 compose
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+    - docker_service:
+        project_src: jfrog
+        state: absent
+
+    - docker_service:
+        project_name: jfrog
+        definition:
+          version: '2'
+          services:
+            postgres:
+              image: postgres:latest
+              container_name: postgres
+              environment:
+               - POSTGRES_USER: artifactory
+               - POSTGRES_PASSWORD: artifactory
+              ports:
+               - "5432:5432"
+              volume:
+               - "/project/docker/postgres:/var/lib/postgresql/data"
+              restart: always
+            
+            artifactory:
+              image: docker.bintray.io/jfrog/artifactory-pro:latest
+              environment:
+               - DB_TYPE: 'postgresql'
+               - DB_HOST: 'localhost'
+               - DB_PORT: '5432'
+               - DB_USER: 'artifactory'
+               - DB_PASSWORD: 'artifactory'
+              depends_on:
+                 - postgres
+              ports:
+               - "8081:8081"
+              volume:
+               - "/test/docker/artifactory:/var/opt/jfrog/artifactory" 
+              links:
+               - postgres
+              restart: always
+      register: output
+
+    - debug:
+        var: output
+
+    - assert:
+        that:
+          - "postgres.jrog_postgres_1.state.running"
+          - "artifactory.jrog_artifactory_1.state.running"
+
