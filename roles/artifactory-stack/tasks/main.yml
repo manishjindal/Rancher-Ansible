@@ -1,29 +1,29 @@
 ---
 
-- name: Deploy Static Site
-  docker:
-    name: test-site
-    image: seqvence/static-site:latest
-    ports:
-      - 80:8080
-    env: RANCHER_NETWORK=true
+#- name: Deploy Static Site
+#  docker:
+#    name: test-site
+#    image: seqvence/static-site:latest
+#    ports:
+#      - 80:8080
+#    env: RANCHER_NETWORK=true
 
 - name: Setup Rancher
   rancher:
-    url: "http://188.166.50.73:8080"
-    access_key: "B74C6ABF27515D372720"
-    secret_key: "xcj8UYFYz1JuKNyTUYK4iUxX7mWog2H1V1dEQ23v"
+    url: http://188.166.50.73:8080/
+    access_key: A31A8C3ED930CDDFB244
+    secret_key: FYp4TAQkuPgvso3quBW91ZZoTdoiXDxstuVk4WXr
     catalogs:
-      - url: "https://github.com/manishjindal/rancher-cattle-demo.git"
-        name: "MyCatalog"
-        branch: "master"
+      - url: https://github.com/manishjindal/rancher-cattle-demo.git
+        name: MyCatalog
+        branch: master
     environments:
       - name: Production
         stacks:
           - name: Janitor
-            catalog_entry: "MyCatalog:Janitor"
+            catalog_entry: MyCatalog:Janitor
 - name: Display Registration Token
   debug:
-    msg: "Rancher Production Token is {{ rancher.envs.Production.token }}"
+    msg: Rancher Production Token is {{ rancher.envs.Production.token }}
 
 

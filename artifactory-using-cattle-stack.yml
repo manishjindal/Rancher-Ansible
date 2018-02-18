@@ -1,6 +1,6 @@
 - name: Rancher module
-  hosts: localhost
-  connection: local
+  hosts: Rancher-master
+  #connection: local
   become: True
   roles:
     - artifactory-stack
