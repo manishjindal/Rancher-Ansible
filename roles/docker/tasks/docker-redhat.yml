@@ -25,6 +25,7 @@
 
 - name: Install Docker package
   yum:
-    name: "{{ __docker_package }}-{{ __docker_version }}"
+    name: "{{ __docker_package }}"
+    #name: "{{ __docker_package }}-{{ __docker_version }}"
     state: present
   notify: restart docker

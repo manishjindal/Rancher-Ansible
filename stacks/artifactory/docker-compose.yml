@@ -14,7 +14,7 @@ artifactory:
   image: docker.bintray.io/jfrog/artifactory-pro:latest
   environment:
       DB_TYPE: "postgresql"
-      DB_HOST: "159.65.74.169"
+      DB_HOST: "159.89.174.199"
       DB_PORT: "5432"
       DB_USER: "artifactory"
       DB_PASSWORD: "artifactory"

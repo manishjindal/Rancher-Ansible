@@ -1,0 +1,66 @@
+version: '2'
+volumes:
+  sonarqube-plugin:
+    driver: local
+  db-data:
+    driver: local
+services:
+  sonarqube-storage:
+    image: rawmind/alpine-volume:0.0.2-1
+    environment:
+      SERVICE_GID: '0'
+      SERVICE_UID: '0'
+      SERVICE_VOLUME: /opt/sonarqube/extensions/plugins
+    network_mode: none
+    volumes:
+    - sonarqube-plugin:/opt/sonarqube/extensions/plugins
+    links:
+    - db:db
+    labels:
+      io.rancher.container.start_once: 'true'
+      io.rancher.container.hostname_override: container_name
+  sonarqube:
+    image: sonarqube:6.5-alpine
+    environment:
+      SONARQUBE_JDBC_PASSWORD: sonar
+      SONARQUBE_JDBC_URL: jdbc:postgresql://db:5432/sonar
+      SONARQUBE_JDBC_USERNAME: sonar
+      SONARQUBE_WEB_JVM_OPTS: ''
+    links:
+    - db:db
+    volumes_from:
+    - sonarqube-storage
+    labels:
+      io.rancher.sidekicks: sonarqube-storage
+      io.rancher.container.hostname_override: container_name
+  db-storage:
+    image: rawmind/alpine-volume:0.0.2-1
+    environment:
+      SERVICE_GID: '0'
+      SERVICE_UID: '0'
+      SERVICE_VOLUME: /var/lib/postgresql
+    network_mode: none
+    volumes:
+    - db-data:/var/lib/postgresql
+    labels:
+      io.rancher.container.start_once: 'true'
+      io.rancher.container.hostname_override: container_name
+  sonarqube-lb:
+    image: rancher/lb-service-haproxy:v0.7.6
+    ports:
+    - 9000:9000/tcp
+    labels:
+      io.rancher.container.agent.role: environmentAdmin
+      io.rancher.container.create_agent: 'true'
+  db:
+    image: postgres:9.6.3-alpine
+    environment:
+      POSTGRES_DB: sonar
+      POSTGRES_PASSWORD: sonar
+      POSTGRES_USER: sonar
+    volumes_from:
+    - db-storage
+    labels:
+      io.rancher.sidekicks: db-storage
+      io.rancher.container.hostname_override: container_name
+
