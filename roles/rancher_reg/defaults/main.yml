@@ -1,5 +1,5 @@
 ---
 
-rancher_server: 139.59.41.99
+rancher_server: "{{inventory_hostname}}"
 rancher_port: 8080
 rancher_agent_name: "agent"
