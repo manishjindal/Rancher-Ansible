@@ -1,4 +1,7 @@
 - name: 'Rancher module'
   hosts: Rancher-master
+  vars:
+    stack_name: jenkins-stack
+    stack_folder: jenkins
   roles:
     - rancher_compose
