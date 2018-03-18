@@ -1,7 +1,14 @@
 ---
+- name: Create stack Direcoty on Rancher Master
+  file: path=/tmp/{{stack_folder}} state=directory
+
+- name: Copy Stack Compose on Master
+  copy: src=stacks/{{stack_folder}}/docker-compose.yml  dest=/tmp/{{stack_folder}}/docker-compose.yml
+
+
 - name: Install Stack
   rancher_compose:
-    docker_compose: "{{compose_dir}}/{{stack_folder}}/docker-compose.yml"
+    docker_compose: "/tmp/{{stack_folder}}/docker-compose.yml"
     url: "{{rancher_master}}"
     access_key: "{{access_key}}"
     secret_key: "{{secret_key}}"

@@ -12,3 +12,10 @@
         secret_key: LMWe5HjAdC4vgVAMrDRfBdsgwRujr9aJaEJa9i2E
         project_name: artifactory-stack
         state: started
+
+- name: 'Rancher module'
+  hosts: Rancher-master
+  vars:
+    stack_name: artifactory-stack
+  roles:
+    - rancher_compose
