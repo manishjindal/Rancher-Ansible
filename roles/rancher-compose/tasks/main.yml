@@ -1,9 +1,0 @@
----
-- name: Install Stack
-  - rancher_compose:
-      docker_compose: "{{compose_dir}}/docker-compose.yml"
-      url: {{rancher_node}}
-      access_key: {{access_key}}
-      secret_key: {{secret_key}}
-      project_name: {{stack_name}}
-      state: started
