@@ -1,6 +1,0 @@
----
-
-rancher_name: rancher_server
-rancher_server: {{host}}
-rancher_version: v1.6.14
-rancher_port: 8080

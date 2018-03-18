@@ -2,15 +2,15 @@
 - name: Installing and configuring Docker
   hosts: all
   become: yes
-  #vars_files:
-  #  - providers/other/vars/rancher-1.6.yml
+  vars_files:
+    - providers/other/vars/rancher-1.6.yml
   roles:
     - { role: docker, tags: ["docker"] }
 
 - name: Setting up Rancher Server
   hosts: Rancher-master
-  #vars_files:
-  #  - providers/other/vars/rancher-1.6.yml
+  vars_files:
+    - providers/other/vars/rancher-1.6.yml
   become: yes
   roles:
     - { role: rancher, tags: ["rancher"] }
@@ -19,8 +19,8 @@
 - name: Register Rancher Hosts
   hosts: Rancher-master
   become: yes
-  #vars_files:
-  #  - providers/other/vars/rancher-1.6.yml
+  vars_files:
+    - providers/other/vars/rancher-1.6.yml
   roles:
     - { role: rancher_reg, tags: ["rancher_reg"] }
 

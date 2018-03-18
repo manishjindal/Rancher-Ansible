@@ -1,0 +1,6 @@
+---
+
+rancher_name: rancher_server
+rancher_server: 192.168.56.102
+rancher_version: v1.6.14
+rancher_port: 8080

@@ -2,4 +2,3 @@
 # defaults file for rancher
 rancher_name: 'rancher_server'
 rancher_port: 8080
-rancher_version: v1.6.14
