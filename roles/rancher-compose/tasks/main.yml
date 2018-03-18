@@ -1,8 +1,9 @@
 ---
-- name: create stack
+- name: Install Stack
   - rancher_compose:
-      docker_compose: "{{playbook_dir}}/docker-compose.yml"
-      url: http://188.166.50.73:8080
-      access_key: B74C6ABF27515D372720
-      secret_key: xcj8UYFYz1JuKNyTUYK4iUxX7mWog2H1V1dEQ23v
-      state: present
+      docker_compose: "{{compose_dir}}/docker-compose.yml"
+      url: {{rancher_node}}
+      access_key: {{access_key}}
+      secret_key: {{secret_key}}
+      project_name: {{stack_name}}
+      state: started
