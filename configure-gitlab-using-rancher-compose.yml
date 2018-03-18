@@ -6,9 +6,9 @@
   tasks:
     - name: install stack
       rancher_compose:
-        docker_compose: "/root/Rancher-Ansible/stacks/jenkins/docker-compose.yml"
+        docker_compose: "/root/Rancher-Ansible/stacks/gitlab/docker-compose.yml"
         url: http://139.59.41.99:8080
         access_key: A33E8A308E51681CE5B7
         secret_key: LMWe5HjAdC4vgVAMrDRfBdsgwRujr9aJaEJa9i2E
-        project_name: jenkins-stack
+        project_name: gitlab-stack
         state: started
