@@ -81,4 +81,3 @@ rancher_server: <RANCHER SERVER IP ADDRESS>
 
 ```
 
-kk
