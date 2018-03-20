@@ -80,3 +80,4 @@ Modify following values in vars file.
 rancher_server: <RANCHER SERVER IP ADDRESS>
 
 ```
+

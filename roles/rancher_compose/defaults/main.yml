@@ -1,6 +1,5 @@
 ---
 
-compose_dir: "/root/Rancher-Ansible/stacks"
 rancher_master: "http://159.89.171.91:8080"
 access_key: "A56A412CE594729A519B"
 secret_key: "b8iJXYScRBk98FmUXFSSYQSAj44xFBq16yChD3de"
