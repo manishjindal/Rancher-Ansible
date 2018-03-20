@@ -17,7 +17,7 @@
 
 
 - name: Register Rancher Hosts
-  hosts: Rancher-master
+  hosts: Rancher-host
   become: yes
   vars_files:
     - providers/other/vars/rancher-1.6.yml
