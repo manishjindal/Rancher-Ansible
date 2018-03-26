@@ -5,7 +5,7 @@ postgres:
       POSTGRES_USER: "artifactory"
       POSTGRES_PASSWORD: "artifactory"
   ports:
-   - "5432:5432"
+   - "5433:5432"
   #volumes:
   # - "/project/docker/postgres:/var/lib/postgresql/data"
   restart: always
@@ -14,8 +14,8 @@ artifactory:
   image: docker.bintray.io/jfrog/artifactory-pro:latest
   environment:
       DB_TYPE: "postgresql"
-      DB_HOST: "159.89.174.199"
-      DB_PORT: "5432"
+      DB_HOST: "159.89.172.39"
+      DB_PORT: "5433"
       DB_USER: "artifactory"
       DB_PASSWORD: "artifactory"
   #    EXTRA_JAVA_OPTIONS: "Xmx1g"

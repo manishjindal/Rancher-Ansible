@@ -1,8 +1,9 @@
 gitlab:
   image: gitlab/gitlab-ce:latest
   environment:
+    GITLAB_OMNIBUS_CONFIG: |
+      external_url 'http://159.89.172.39'
     hostname: gitlab.example.com
-
   volumes:
     - /srv/gitlab/config:/etc/gitlab
     - /srv/gitlab/logs:/var/log/gitlab
